@@ -1,3 +1,16 @@
 {
-	"name": "UIVIew"
+    "name": "UIVIew",
+    "rootNamespace": "",
+    "references": [
+        "GUID:bc01412fea0f3c147b954149be8ab589"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
