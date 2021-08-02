@@ -2,57 +2,52 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public class MouseInteractionsPresenter : MonoBehaviour
 {
+    [SerializeField] private EventSystem _eventSystem;
     [SerializeField] private Camera _camera;
     [SerializeField] private SelectableValue _selectedObject;
-    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private SelectableValue _selectedTarget;
 
-    private Outline _previousOutline;
+    [SerializeField] private Vector3Value _groundClicksRMB;
+    [SerializeField] private Transform _groundTransform;
 
+    private Plane _groundPlane;
+
+    private void Start()
+    {
+        _groundPlane = new Plane(_groundTransform.up, 0);
+    }
 
     private void Update()
     {
+        if (!Input.GetMouseButtonUp(0) && !Input.GetMouseButton(1))
+            return;
         if (_eventSystem.IsPointerOverGameObject())
             return;
-        if (!Input.GetMouseButtonUp(0))
-            return;
-        var hits = Physics.RaycastAll(_camera.ScreenPointToRay(Input.mousePosition));
-        if (hits.Length == 0)
-            return;
 
-        var selectable = hits
-                .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
-                .Where(c => c != null)
-                .FirstOrDefault();
-        _selectedObject.SetValue(selectable);
-
-        RemovePreviousOutline();
-        if (selectable != null)
-            AddOutline(((MonoBehaviour)selectable).gameObject);
-    }
-
-    private void RemovePreviousOutline()
-    {
-        if (_previousOutline != null)
-            _previousOutline.OutlineMode = Outline.Mode.OutlineHidden;
-    }
-
-    private void AddOutline(GameObject gameObject)
-    {
-        var outline = gameObject.GetComponent<Outline>();
-        if (outline == null)
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetMouseButtonUp(0))
         {
-            outline = gameObject.AddComponent<Outline>();
-            outline.OutlineMode = Outline.Mode.OutlineAll;
-            outline.OutlineColor = Color.yellow;
-            outline.OutlineWidth = 5f;
-            _previousOutline = outline;
+            _selectedObject.SetValue(GetSelectedValue(ray));
         }
         else
         {
-            outline.OutlineMode = Outline.Mode.OutlineAll;
+            if (_groundPlane.Raycast(ray, out var enter))
+                _groundClicksRMB.SetValue(ray.origin + ray.direction * enter);
+            _selectedTarget.SetValue(GetSelectedValue(ray));
         }
+    }
+
+    private ISelectable GetSelectedValue(Ray ray)
+    {
+        var hits = Physics.RaycastAll(ray);
+        if (hits.Length == 0)
+            return null;
+        var selectable = hits
+            .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
+            .Where(c => c != null)
+            .FirstOrDefault();
+        return selectable;
     }
 }
