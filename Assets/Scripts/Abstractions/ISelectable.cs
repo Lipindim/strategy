@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public interface ISelectable
+public interface ISelectable : IHealth
 {
-	float Health { get; }
-	float MaxHealth { get; }
+	Transform PivotPoint { get; }
 	Sprite Icon { get; }
 }

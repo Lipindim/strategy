@@ -2,18 +2,12 @@
 using Zenject;
 
 
-public class AttackCommandCreator : CommandCreatorBase<IAttackCommand>
+public class AttackCommandCreator : CancellableCommandCreatorBase<IAttackCommand, IAttackable>
 {
 
 	private Action<IAttackCommand> _creationCallback;
 
-	[Inject]
-	private void Init([Inject(Id = ObjectIdentifiers.SelectedTarget)] SelectableValue selectedTarget)
-	{
-        selectedTarget.ValueChanged += OnTargetSelected;
-	}
-
-    private void OnTargetSelected(ISelectable target)
+    private void OnTargetSelected(IAttackable target)
     {
         if (_pending)
         {
@@ -22,12 +16,6 @@ public class AttackCommandCreator : CommandCreatorBase<IAttackCommand>
 		}
     }
 
-	protected override void CreateCommand(Action<IAttackCommand> creationCallback)
-	{
-		base.CreateCommand(creationCallback);
-
-		_creationCallback = creationCallback;
-	}
 
 	public override void ProcessCancel()
 	{
@@ -35,4 +23,9 @@ public class AttackCommandCreator : CommandCreatorBase<IAttackCommand>
 
 		_creationCallback = null;
 	}
+
+    protected override IAttackCommand CreateCommand(IAttackable argument)
+    {
+		return new AttackCommand(argument);
+    }
 }

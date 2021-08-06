@@ -3,7 +3,7 @@ using Zenject;
 
 public class StopCommandCreator : CommandCreatorBase<IStopCommand>
 {
-	protected override void CreateCommand(Action<IStopCommand> creationCallback)
+	protected override void StartCommand(Action<IStopCommand> creationCallback)
 	{
 		creationCallback?.Invoke(new StopCommand());
 	}

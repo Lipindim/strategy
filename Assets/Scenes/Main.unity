@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: f36d7713973a6eb41b968de684cc66e6, type: 2}
 --- !u!1 &31145070
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +755,8 @@ MonoBehaviour:
   _eventSystem: {fileID: 1074623931}
   _camera: {fileID: 963194227}
   _selectedObject: {fileID: 11400000, guid: fc0548c6c5cf17742bbd04a78d89a940, type: 2}
-  _selectedTarget: {fileID: 11400000, guid: 364932b16582bf649a2bbfd0b68e3c9a, type: 2}
+  _selectedTarget: {fileID: 0}
+  _attackValue: {fileID: 11400000, guid: 6367f1015adf8b04fbf252f9222e32b7, type: 2}
   _groundClicksRMB: {fileID: 11400000, guid: 495a6a0c71e011a4bb1a16152296f6d9, type: 2}
   _groundTransform: {fileID: 2079715104}
 --- !u!1 &629688118
@@ -1426,7 +1427,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.4870461, y: -0, z: -0, w: 0.8733763}
-  m_LocalPosition: {x: 0, y: 8.83, z: -5.15}
+  m_LocalPosition: {x: 0, y: 15.11, z: -9.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1939,13 +1940,49 @@ PrefabInstance:
       propertyPath: m_Name
       value: VegetationSmall01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.035271
+      value: -7.68
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1953,7 +1990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.1983967
+      value: 6.53
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 266f03476f36b2945b733736a459bf7a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3096,9 +3133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chomperPrefab: {fileID: 7770944875191839586, guid: 2bb4f99523e55434a857e77c7a5f8b7b, type: 3}
-  _groundRightClick: {fileID: 11400000, guid: 495a6a0c71e011a4bb1a16152296f6d9, type: 2}
   _initialPoint: {fileID: 11400000, guid: 13545ace506c06b4a92e149721c13360, type: 2}
-  _selectedTarget: {fileID: 11400000, guid: 364932b16582bf649a2bbfd0b68e3c9a, type: 2}
 --- !u!1 &1923820801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,7 +3412,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2079715104
 Transform:
@@ -3388,7 +3423,7 @@ Transform:
   m_GameObject: {fileID: 2079715103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 10, y: 1, z: 10}
   m_Children: []
   m_Father: {fileID: 1726501440}
   m_RootOrder: 0
