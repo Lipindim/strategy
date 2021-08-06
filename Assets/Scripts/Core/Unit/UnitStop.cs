@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using UnityEngine.AI;
 
 
 public class UnitStop : CommandExecutorBase<IStopCommand>
@@ -6,7 +6,7 @@ public class UnitStop : CommandExecutorBase<IStopCommand>
 {
 	public override void ExecuteSpecificCommand(IStopCommand command)
 	{
-		Debug.Log("Стою!");
+		GetComponent<NavMeshAgent>().ResetPath();
 	}
 }
 

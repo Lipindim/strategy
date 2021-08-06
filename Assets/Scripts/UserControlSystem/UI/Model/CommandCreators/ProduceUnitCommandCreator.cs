@@ -12,7 +12,7 @@ public class ProduceUnitCommandCreator : CommandCreatorBase<IProduceUnitCommand>
 		_unitPrefab = unitPrefab;
     }
 
-	protected override void CreateCommand(Action<IProduceUnitCommand> creationCallback)
+	protected override void StartCommand(Action<IProduceUnitCommand> creationCallback)
 	{
 		creationCallback?.Invoke(new ProduceUnitCommandHeir(_unitPrefab));
 	}

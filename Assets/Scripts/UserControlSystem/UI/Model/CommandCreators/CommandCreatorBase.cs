@@ -10,12 +10,12 @@ public abstract class CommandCreatorBase<T> where T : ICommand
         var classSpecificExecutor = commandExecutor as CommandExecutorBase<T>;
         if (classSpecificExecutor != null)
         {
-            CreateCommand(callback);
+            StartCommand(callback);
         }
         return commandExecutor;
     }
 
-    protected virtual void CreateCommand(Action<T> creationCallback)
+    protected virtual void StartCommand(Action<T> creationCallback)
     {
         _pending = true;
     }
