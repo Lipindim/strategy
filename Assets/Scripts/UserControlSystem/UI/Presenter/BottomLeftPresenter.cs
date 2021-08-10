@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class BottomLeftPresenter : MonoBehaviour
 {
 	[SerializeField] private Image _selectedImage;

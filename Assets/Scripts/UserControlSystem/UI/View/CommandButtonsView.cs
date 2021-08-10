@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CommandButtonsView : MonoBehaviour
 {
-	public Action<ICommandExecutor> OnClick;
+	public IObservable<ICommandExecutor> ObservableCommandExecutor => _commandExecutor;
+	private Subject<ICommandExecutor> _commandExecutor = new Subject<ICommandExecutor>();
 
 	[SerializeField] private GameObject _attackButton;
 	[SerializeField] private GameObject _moveButton;
@@ -56,7 +58,7 @@ public class CommandButtonsView : MonoBehaviour
 			var buttonGameObject = GetButtonGameObjectByType(currentExecutor.GetType());
 			buttonGameObject.SetActive(true);
 			var button = buttonGameObject.GetComponent<Button>();
-			button.onClick.AddListener(() => OnClick?.Invoke(currentExecutor));
+			button.OnClickAsObservable().Subscribe(_ => _commandExecutor.OnNext(currentExecutor));
 		}
 	}
 
