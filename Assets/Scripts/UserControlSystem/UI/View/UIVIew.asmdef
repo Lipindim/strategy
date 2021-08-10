@@ -2,7 +2,8 @@
     "name": "UIVIew",
     "rootNamespace": "",
     "references": [
-        "GUID:bc01412fea0f3c147b954149be8ab589"
+        "GUID:bc01412fea0f3c147b954149be8ab589",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

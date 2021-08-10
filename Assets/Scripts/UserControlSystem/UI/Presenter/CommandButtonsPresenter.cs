@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -13,10 +14,10 @@ public class CommandButtonsPresenter : MonoBehaviour
 
     private void Start()
     {
-        _view.OnClick += _model.OnCommandButtonClicked;
-        _model.OnCommandSent += _view.UnblockAllInteractions;
-        _model.OnCommandCancel += _view.UnblockAllInteractions;
-        _model.OnCommandAccepted += _view.BlockInteractions;
+        _view.ObservableCommandExecutor.Subscribe(_model.OnCommandButtonClicked);
+        _model.CommandSent.Subscribe(_ => _view.UnblockAllInteractions());
+        _model.CommandCancel.Subscribe(_  => _view.UnblockAllInteractions());
+        _model.CommandAccepted.Subscribe(_view.BlockInteractions);
 
         _selectable.ValueChanged += OnSelected;
         OnSelected(_selectable.CurrentValue);

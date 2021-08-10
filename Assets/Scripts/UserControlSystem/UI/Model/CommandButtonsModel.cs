@@ -1,11 +1,18 @@
 ﻿using System;
+using UniRx;
 using Zenject;
 
 public class CommandButtonsModel
 {
-	public event Action<ICommandExecutor> OnCommandAccepted;
-	public event Action OnCommandSent;
-	public event Action OnCommandCancel;
+
+	public IObservable<ICommandExecutor> CommandAccepted => _commandAccepted;
+	private Subject<ICommandExecutor> _commandAccepted = new Subject<ICommandExecutor>();
+
+	public IObservable<Unit> CommandSent => _commandSent;
+	private ReactiveCommand _commandSent = new ReactiveCommand();
+
+	public IObservable<Unit> CommandCancel => _commandCancel;
+	private ReactiveCommand _commandCancel = new ReactiveCommand();
 
 	[Inject] private CommandCreatorBase<IProduceUnitCommand> _unitProducer;
 	[Inject] private CommandCreatorBase<IAttackCommand> _attacker;
@@ -22,7 +29,7 @@ public class CommandButtonsModel
 			CancelProcess();
 		}
 		_commandIsPending = true;
-		OnCommandAccepted?.Invoke(commandExecutor);
+		_commandAccepted.OnNext(commandExecutor);
 
 		_unitProducer.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(commandExecutor, command));
 		_attacker.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(commandExecutor, command));
@@ -35,7 +42,7 @@ public class CommandButtonsModel
 	{
 		commandExecutor.ExecuteCommand(command);
 		_commandIsPending = false;
-		OnCommandSent?.Invoke();
+		_commandSent.Execute();
 	}
 
 	public void OnSelectionChanged()
@@ -52,6 +59,6 @@ public class CommandButtonsModel
 		_mover.ProcessCancel();
 		_patroller.ProcessCancel();
 
-		OnCommandCancel?.Invoke();
+		_commandCancel.Execute();
 	}
 }
