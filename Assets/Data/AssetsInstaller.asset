@@ -16,3 +16,6 @@ MonoBehaviour:
   _groundRightClick: {fileID: 11400000, guid: 495a6a0c71e011a4bb1a16152296f6d9, type: 2}
   _attackTarget: {fileID: 11400000, guid: 6367f1015adf8b04fbf252f9222e32b7, type: 2}
   _selectable: {fileID: 11400000, guid: fc0548c6c5cf17742bbd04a78d89a940, type: 2}
+  _chomperSprite: {fileID: 21300000, guid: 11afdf33ed3aa0b409fc154cc2b9316f, type: 3}
+  _chomperPrefab: {fileID: 7770944875191839586, guid: 2bb4f99523e55434a857e77c7a5f8b7b, type: 3}
+  _deferValue: {fileID: 11400000, guid: 0393e531bbec8d84ab793a24bb055181, type: 2}

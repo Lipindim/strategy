@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public interface ISelectable : IHealth
+public interface ISelectable : IHealth, IIcon
 {
 	Transform PivotPoint { get; }
-	Sprite Icon { get; }
 }

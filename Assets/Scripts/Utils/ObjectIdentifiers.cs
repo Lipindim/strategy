@@ -5,5 +5,6 @@
     public const string InitialPoint = nameof(InitialPoint);
     public const string SelectedTarget = nameof(SelectedTarget);
     public const string AttackTarget = nameof(AttackTarget);
+    public const string Chomper = nameof(Chomper);
 }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public interface IMoveCommand : ICommand
+public interface IMoveCommand : IDeferredCommand
 {
 	public Vector3 Target { get; }
 }

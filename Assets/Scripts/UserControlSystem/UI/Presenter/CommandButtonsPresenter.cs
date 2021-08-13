@@ -19,8 +19,7 @@ public class CommandButtonsPresenter : MonoBehaviour
         _model.CommandCancel.Subscribe(_  => _view.UnblockAllInteractions());
         _model.CommandAccepted.Subscribe(_view.BlockInteractions);
 
-        _selectable.ValueChanged += OnSelected;
-        OnSelected(_selectable.CurrentValue);
+        _selectable.Subscribe(OnSelected);
     }
 
     private void OnSelected(ISelectable selectable)

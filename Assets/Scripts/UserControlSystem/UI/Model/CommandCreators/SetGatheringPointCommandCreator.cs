@@ -1,0 +1,8 @@
+﻿using UnityEngine;
+
+
+public class SetGatheringPointCommandCreator : CancellableCommandCreatorBase<ISetGatheringPointCommand, Vector3>
+{
+    protected override ISetGatheringPointCommand CreateCommand(Vector3 argument) => new SetGatheringPointCommand(argument);
+}
+

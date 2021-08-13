@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Unit : MonoBehaviour, ISelectable, IAttackable
+public class ChoperUnit : MonoBehaviour, ISelectable, IAttackable
 {
 	public float Health => _health;
 	public float MaxHealth => _maxHealth;
