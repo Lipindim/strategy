@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 
@@ -9,6 +10,9 @@ public class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
     [SerializeField] private Vector3Value _groundRightClick;
     [SerializeField] private AttackValue _attackTarget;
     [SerializeField] private SelectableValue _selectable;
+    [SerializeField] private Sprite _chomperSprite;
+    [SerializeField] private GameObject _chomperPrefab;
+    [SerializeField] private BoolValue _deferValue;
 
     public override void InstallBindings()
     {
@@ -16,6 +20,10 @@ public class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
             .FromInstance(_attackTarget);
         Container.Bind<IAwaitable<Vector3>>()
             .FromInstance(_groundRightClick);
-        Container.BindInstances(_legacyContext, _groundRightClick, _attackTarget, _selectable);
+        Container.BindInstances(_legacyContext, _groundRightClick, _attackTarget);
+        Container.Bind<Sprite>().WithId(ObjectIdentifiers.Chomper).FromInstance(_chomperSprite);
+        Container.Bind<GameObject>().WithId(ObjectIdentifiers.Chomper).FromInstance(_chomperPrefab);
+        Container.Bind<IObservable<ISelectable>>().FromInstance(_selectable);
+        Container.Bind<BoolValue>().FromInstance(_deferValue);
     }
 }

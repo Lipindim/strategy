@@ -1,19 +1,15 @@
 ﻿using System;
-using UnityEngine;
 using Zenject;
 
 public class ProduceUnitCommandCreator : CommandCreatorBase<IProduceUnitCommand>
 {
-    private readonly GameObject _unitPrefab;
-
-	[Inject]
-    public ProduceUnitCommandCreator([Inject(Id = ObjectIdentifiers.ChomperPrefab)] GameObject unitPrefab)
-    {
-		_unitPrefab = unitPrefab;
-    }
+	//[Inject] private AssetsContext _context;
+	[Inject] private DiContainer _diContainer;
 
 	protected override void StartCommand(Action<IProduceUnitCommand> creationCallback)
 	{
-		creationCallback?.Invoke(new ProduceUnitCommandHeir(_unitPrefab));
+		var produceUnitCommand = new ProduceUnitCommand();
+		_diContainer.Inject(produceUnitCommand);
+		creationCallback?.Invoke(produceUnitCommand);
 	}
 }

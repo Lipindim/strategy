@@ -1,4 +1,5 @@
 ﻿using TMPro;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,7 @@ public class BottomLeftPresenter : MonoBehaviour
 
 	private void Start()
 	{
-		_selectedValue.ValueChanged += OnSelected;
-		OnSelected(_selectedValue.CurrentValue);
+		_selectedValue.Subscribe(OnSelected);
 	}
 
 	private void OnSelected(ISelectable selected)

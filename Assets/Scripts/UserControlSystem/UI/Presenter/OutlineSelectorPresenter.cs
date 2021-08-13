@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UniRx;
+using UnityEngine;
 
 
 public class OutlineSelectorPresenter : MonoBehaviour
@@ -10,8 +11,7 @@ public class OutlineSelectorPresenter : MonoBehaviour
 
     private void Start()
     {
-        _selectable.ValueChanged += OnSelected;
-        OnSelected(_selectable.CurrentValue);
+        _selectable.Subscribe(OnSelected);
     }
 
     private void OnSelected(ISelectable selectable)

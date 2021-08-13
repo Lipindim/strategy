@@ -1,12 +1,13 @@
 using UnityEngine;
+using Zenject;
 
 public class ProduceUnitCommand : IProduceUnitCommand
 {
-	public GameObject UnitPrefab => _unitPrefab;
-	protected GameObject _unitPrefab;
+	[Inject(Id = ObjectIdentifiers.Chomper)] public string UnitName { get; }
+	[Inject(Id = ObjectIdentifiers.Chomper)] public Sprite Icon { get; }
+	[Inject(Id = ObjectIdentifiers.Chomper)] public float ProductionTime { get; }
+	[Inject(Id = ObjectIdentifiers.Chomper)] public GameObject UnitPrefab { get; }
 
-	public ProduceUnitCommand(GameObject unitPrefab)
-	{
-		_unitPrefab = unitPrefab;
-	}
+	//public GameObject UnitPrefab => _unitPrefab;
+	//[InjectAsset(ObjectIdentifiers.Chomper)] private GameObject _unitPrefab;
 }
