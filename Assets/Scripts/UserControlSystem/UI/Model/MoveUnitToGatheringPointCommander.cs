@@ -26,7 +26,7 @@ public class MoveUnitToGatheringPointCommander : MonoBehaviour
         if (unit == null)
             return;
 
-        var unitMoveExecutor = unit.GetComponent<CommandExecutorBase<IMoveCommand>>();
+        var unitMoveExecutor = unit.GetComponent<ICommandExecutor<IMoveCommand>>();
         if (unitMoveExecutor != null)
         {
             _moveCommandCreator.ProcessCommandExecutor(unitMoveExecutor, command => SendMoveCommand(command, unitMoveExecutor));

@@ -1,10 +1,22 @@
 ﻿using System;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
+
 public class PatrolCommandCreator : CancellableCommandCreatorBase<IPatrolCommand, Vector3>
 {
-	[Inject] private IObservable<ISelectable> _selectable;
+    private ISelectable _currentSelected;
 
-	protected override IPatrolCommand CreateCommand(Vector3 argument) => new PatrolCommand( new Vector3(), argument);
+    public PatrolCommandCreator([Inject] IObservable<ISelectable> selectable)
+    {
+        selectable.Subscribe(OnSelected);
+    }
+
+    private void OnSelected(ISelectable selectable)
+    {
+        _currentSelected = selectable;
+    }
+
+    protected override IPatrolCommand CreateCommand(Vector3 argument) => new PatrolCommand( _currentSelected.PivotPoint.position, argument);
 }

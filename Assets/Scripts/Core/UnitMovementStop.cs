@@ -1,4 +1,5 @@
 using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,8 +25,22 @@ public class UnitMovementStop : MonoBehaviour, IAwaitable<AsyncExtensions.Void>
     public event Action Stoped;
 
     [SerializeField] private NavMeshAgent _agent;
+    [SerializeField] private UnitStopDetector _unitStopDetector;
+    [SerializeField] private int _throttleFrames = 60;
+    [SerializeField] private int _continuityThreshold = 10;
 
-    void Update()
+
+    private void Awake()
+    {
+        _unitStopDetector.StopDetected += OnStopDetected;
+    }
+
+    private void OnStopDetected()
+    {
+        Stoped?.Invoke();
+    }
+
+    private void Update()
     {
         if (!_agent.pathPending)
         {

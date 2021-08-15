@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UniRx;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,6 +17,13 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
 
     private ReactiveCollection<IUnitProductionTask> _queue = new ReactiveCollection<IUnitProductionTask>();
 
+    private int _factionId;
+
+    private void Start()
+    {
+        _factionId = GetComponent<IFactionMember>().FactionId;
+    }
+
     private void Update()
     {
         if (_queue.Count == 0)
@@ -29,6 +37,8 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
         {
             removeTaskAtIndex(0);
             _lastProducedUnit.Value = Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
+            var factionMember = _lastProducedUnit.Value.GetComponent<IFactionMember>();
+            factionMember.SetFaction(_factionId);
         }
     }
 
@@ -43,8 +53,9 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
         _queue.RemoveAt(_queue.Count - 1);
     }
 
-    public override void ExecuteSpecificCommand(IProduceUnitCommand command)
+    public override Task ExecuteSpecificCommand(IProduceUnitCommand command)
     {
         _queue.Add(new UnitProductionTask(command.ProductionTime, command.Icon, command.UnitPrefab, command.UnitName));
+        return Task.CompletedTask;
     }
 }
