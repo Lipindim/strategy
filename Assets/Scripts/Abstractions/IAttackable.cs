@@ -1,5 +1,9 @@
-﻿public interface IAttackable : IHealth
+﻿using System;
+
+
+public interface IAttackable : IHealth
 {
-    string Name { get; }
+    event Action Dead;
+    void ReceiveDamage(int amount);
 }
 

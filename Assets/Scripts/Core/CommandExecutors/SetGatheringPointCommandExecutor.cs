@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Threading.Tasks;
+using UnityEngine;
 
 
 public class SetGatheringPointCommandExecutor : CommandExecutorBase<ISetGatheringPointCommand>
@@ -7,9 +8,10 @@ public class SetGatheringPointCommandExecutor : CommandExecutorBase<ISetGatherin
 
     [SerializeField] private Transform _gatheringPoint;
 
-    public override void ExecuteSpecificCommand(ISetGatheringPointCommand command)
+    public override Task ExecuteSpecificCommand(ISetGatheringPointCommand command)
     {
         _gatheringPoint.position = command.GatheringPoint;
+        return Task.CompletedTask;
     }
 }
 

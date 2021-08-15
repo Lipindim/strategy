@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
-public class UnitMovevemtCanceler : MonoBehaviour
+public class UnitStopDetector : MonoBehaviour
 {
-    private const int MAX_AT_ONE_POINT_TIMES = 30;
-    private const float MOVEMENT_ERROR = 0.0000001f;
+    public Action StopDetected;
 
     [SerializeField] private UnitMove _unitMove;
-    [SerializeField] private UnitStop _unitStop;
+    [SerializeField] private int MAX_AT_ONE_POINT_TIMES = 30;
+    [SerializeField] private float MOVEMENT_ERROR = 0.001f;
+
 
     private Vector3 _previousPosition;
     private int _atOnePointTimes = 0;
@@ -23,7 +25,7 @@ public class UnitMovevemtCanceler : MonoBehaviour
                 _atOnePointTimes = 0;
 
             if (_atOnePointTimes > MAX_AT_ONE_POINT_TIMES)
-                _unitStop.CancellationTokenSource.Cancel();
+                StopDetected?.Invoke();
             _previousPosition = _unitMove.transform.position;
         }
     }

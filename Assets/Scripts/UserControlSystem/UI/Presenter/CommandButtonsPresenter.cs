@@ -14,7 +14,7 @@ public class CommandButtonsPresenter : MonoBehaviour
 
     private void Start()
     {
-        _view.ObservableCommandExecutor.Subscribe(_model.OnCommandButtonClicked);
+        _view.OnClick += _model.OnCommandButtonClicked;
         _model.CommandSent.Subscribe(_ => _view.UnblockAllInteractions());
         _model.CommandCancel.Subscribe(_  => _view.UnblockAllInteractions());
         _model.CommandAccepted.Subscribe(_view.BlockInteractions);
@@ -36,7 +36,8 @@ public class CommandButtonsPresenter : MonoBehaviour
         {
             var commandExecutors = new List<ICommandExecutor>();
             commandExecutors.AddRange((selectable as Component).GetComponentsInParent<ICommandExecutor>());
-            _view.MakeLayout(commandExecutors);
+            var queue = (selectable as Component).GetComponentInParent<ICommandsQueue>();
+            _view.MakeLayout(commandExecutors, queue);
         }
     }
 }
