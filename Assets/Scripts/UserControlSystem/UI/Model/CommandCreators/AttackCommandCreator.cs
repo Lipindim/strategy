@@ -23,7 +23,7 @@ public class AttackCommandCreator : CancellableCommandCreatorBase<IAttackCommand
 		_creationCallback = null;
 	}
 
-    protected override IAttackCommand CreateCommand(IAttackable argument)
+    public override IAttackCommand CreateCommand(IAttackable argument)
     {
 		return new AttackCommand(argument);
     }

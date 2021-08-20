@@ -12,6 +12,8 @@ public class ChomperCommandsQueue : MonoBehaviour, ICommandsQueue
 
 	private ReactiveCollection<ICommand> _innerCollection = new ReactiveCollection<ICommand>();
 
+	public ICommand CurrentCommand => _innerCollection.Count > 0 ? _innerCollection[0] : default;
+
 	private void Start()
 	{
 		_innerCollection

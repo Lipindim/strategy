@@ -21,6 +21,10 @@ public class MainBuilding : MonoBehaviour, ISelectable, IAttackable, IUnit, IDam
 
 	private float _health = 1000;
 
+    private void Start()
+    {
+		_health = _maxHealth;
+    }
 
     public void ReceiveDamage(int amount)
 	{

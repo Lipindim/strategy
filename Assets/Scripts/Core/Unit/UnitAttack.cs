@@ -10,7 +10,7 @@ public partial class UnitAttack : CommandExecutorBase<IAttackCommand>
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private UnitStop _stopCommandExecutor;
-    [SerializeField] private ChoperUnit _unit;
+    [SerializeField] private MainUnit _unit;
     [SerializeField] private float _attackingDistance;
     [SerializeField] private int _attackingPeriod;
 

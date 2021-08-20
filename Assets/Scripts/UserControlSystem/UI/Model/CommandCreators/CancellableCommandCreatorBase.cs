@@ -25,7 +25,7 @@ public abstract class CancellableCommandCreatorBase<TCommand, TArgument> : Comma
         }
     }
 
-    protected abstract TCommand CreateCommand(TArgument argument);
+    public abstract TCommand CreateCommand(TArgument argument);
 
     public override void ProcessCancel()
     {

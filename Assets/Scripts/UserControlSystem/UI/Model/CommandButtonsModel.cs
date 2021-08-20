@@ -15,6 +15,8 @@ public class CommandButtonsModel
 	public IObservable<Unit> CommandCancel => _commandCancel;
 	private ReactiveCommand _commandCancel = new ReactiveCommand();
 
+	public bool CommandIsPending => _commandIsPending;
+
 	[Inject] private CommandCreatorBase<IProduceUnitCommand> _unitProducer;
 	[Inject] private CommandCreatorBase<IAttackCommand> _attacker;
 	[Inject] private CommandCreatorBase<IStopCommand> _stopper;

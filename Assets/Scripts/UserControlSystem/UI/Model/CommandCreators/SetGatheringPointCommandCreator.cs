@@ -3,6 +3,6 @@
 
 public class SetGatheringPointCommandCreator : CancellableCommandCreatorBase<ISetGatheringPointCommand, Vector3>
 {
-    protected override ISetGatheringPointCommand CreateCommand(Vector3 argument) => new SetGatheringPointCommand(argument);
+    public override ISetGatheringPointCommand CreateCommand(Vector3 argument) => new SetGatheringPointCommand(argument);
 }
 
