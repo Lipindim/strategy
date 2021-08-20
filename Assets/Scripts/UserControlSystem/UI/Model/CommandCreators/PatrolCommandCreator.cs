@@ -18,5 +18,5 @@ public class PatrolCommandCreator : CancellableCommandCreatorBase<IPatrolCommand
         _currentSelected = selectable;
     }
 
-    protected override IPatrolCommand CreateCommand(Vector3 argument) => new PatrolCommand( _currentSelected.PivotPoint.position, argument);
+    public override IPatrolCommand CreateCommand(Vector3 argument) => new PatrolCommand( _currentSelected.PivotPoint.position, argument);
 }

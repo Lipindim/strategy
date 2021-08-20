@@ -13,6 +13,7 @@ public class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
     [SerializeField] private Sprite _chomperSprite;
     [SerializeField] private GameObject _chomperPrefab;
     [SerializeField] private BoolValue _deferValue;
+    [SerializeField] private ProduceUnitCommandValue _produceUnitCommandValue;
 
     public override void InstallBindings()
     {
@@ -25,5 +26,6 @@ public class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
         Container.Bind<GameObject>().WithId(ObjectIdentifiers.Chomper).FromInstance(_chomperPrefab);
         Container.Bind<IObservable<ISelectable>>().FromInstance(_selectable);
         Container.Bind<BoolValue>().FromInstance(_deferValue);
+        Container.Bind<ProduceUnitCommandValue>().FromInstance(_produceUnitCommandValue);
     }
 }

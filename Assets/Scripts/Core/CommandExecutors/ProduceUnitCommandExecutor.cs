@@ -12,7 +12,11 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
 
     public IReadOnlyReactiveCollection<IUnitProductionTask> Queue => _queue;
 
+    public ProduceUnitCommand ProduceUnitCommand => _produceUnitCommand;
+
+    [SerializeField] private ProduceUnitCommand _produceUnitCommand;
     [SerializeField] private Transform _unitsParent;
+    [SerializeField] private Transform _spawnPoint;
     [SerializeField] private int _maximumUnitsInQueue = 6;
 
     private ReactiveCollection<IUnitProductionTask> _queue = new ReactiveCollection<IUnitProductionTask>();
@@ -36,7 +40,7 @@ public class ProduceUnitCommandExecutor : CommandExecutorBase<IProduceUnitComman
         if (innerTask.TimeLeft <= 0)
         {
             removeTaskAtIndex(0);
-            _lastProducedUnit.Value = Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
+            _lastProducedUnit.Value = Instantiate(innerTask.UnitPrefab, _spawnPoint.position, Quaternion.identity, _unitsParent);
             var factionMember = _lastProducedUnit.Value.GetComponent<IFactionMember>();
             factionMember.SetFaction(_factionId);
         }

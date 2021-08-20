@@ -6,6 +6,8 @@ public class MainBuildingCommandQueue : MonoBehaviour, ICommandsQueue
 	[SerializeField] CommandExecutorBase<IProduceUnitCommand> _produceUnitCommandExecutor;
 	[SerializeField] CommandExecutorBase<ISetGatheringPointCommand> _setGatheringPointCommand;
 
+	public ICommand CurrentCommand => default;
+
 	public void Clear() { }
 
 	public async void EnqueueCommand(object command)

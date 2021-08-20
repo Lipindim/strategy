@@ -19,3 +19,4 @@ MonoBehaviour:
   _chomperSprite: {fileID: 21300000, guid: 11afdf33ed3aa0b409fc154cc2b9316f, type: 3}
   _chomperPrefab: {fileID: 7770944875191839586, guid: 2bb4f99523e55434a857e77c7a5f8b7b, type: 3}
   _deferValue: {fileID: 11400000, guid: 0393e531bbec8d84ab793a24bb055181, type: 2}
+  _produceUnitCommandValue: {fileID: 11400000, guid: c4acee189bfd7fa4ebf1cc4804bc440b, type: 2}
